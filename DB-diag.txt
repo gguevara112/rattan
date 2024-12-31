@@ -1,0 +1,62 @@
+# Base de Datos
+
+## Tabla: `user`
+| Campo                 | Tipo     | Descripción                                |
+|-----------------------|----------|--------------------------------------------|
+| `userID`              | string   | Identificador único del usuario            |
+| `name`                | string   | Nombre del usuario                         |
+| `email`               | string   | Correo electrónico del usuario             |
+| `password`            | string   | Contraseña del usuario (almacenada como hash) |
+| `photo`               | string   | URL de la foto del usuario                 |
+| `language`            | string   | Idioma preferido del usuario               |
+| `trialPeriodDays`     | integer  | Período de prueba en días (valor entre 2 y 5) |
+
+## Tabla: `productnotes`
+| Campo       | Tipo     | Descripción                                     |
+|-------------|----------|-------------------------------------------------|
+| `userID`    | string   | Identificador del usuario                       |
+| `itemID`    | string   | Identificador del producto                      |
+| `note`      | string   | Nota guardada sobre el producto                 |
+| `dateCreated` | date   | Fecha de creación de la nota                    |
+| `updatedAt` | date     | Fecha de última actualización de la nota        |
+
+## Tabla: `wishlist`
+| Campo         | Tipo      | Descripción                                          |
+|---------------|-----------|------------------------------------------------------|
+| `userID`      | string    | Identificador del usuario                             |
+| `itemID`      | string    | Identificador del ítem en la wishlist                 |
+| `dateCreated` | date      | Fecha de creación de la entrada en la wishlist        |
+| `updatedAt`   | date      | Fecha de última actualización de la entrada           |
+
+## Tabla: `testmade`
+| Campo                 | Tipo      | Descripción                                      |
+|-----------------------|-----------|--------------------------------------------------|
+| `userID`              | string    | Identificador del usuario                        |
+| `itemID`              | string    | Identificador del ítem relacionado al test       |
+| `dateCreated`         | date      | Fecha de creación del test                       |
+| `updatedAt`           | date      | Fecha de última actualización del test           |
+| `reactionDescription` | string    | Descripción de la reacción observada             |
+| `ingredientsAnalysis` | string    | Análisis de ingredientes                         |
+
+## Tabla: `listsensitivity`
+| Campo       | Tipo      | Descripción                                           |
+|-------------|-----------|-------------------------------------------------------|
+| `userID`    | string    | Identificador del usuario                             |
+| `itemID`    | string    | Identificador del ítem                                |
+| `category`  | enum      | Categoría (allergy, sensitivity, without allergy)     |
+
+## Tabla: `history`
+| Campo         | Tipo      | Descripción                                           |
+|---------------|-----------|-------------------------------------------------------|
+| `userID`      | string    | Identificador del usuario                             |
+| `itemID`      | string    | Identificador del ítem en el historial                |
+| `dateAccessed`| date      | Fecha en que el usuario accedió al ítem               |
+
+## Tabla: `articles`
+| Campo       | Tipo      | Descripción                                           |
+|-------------|-----------|-------------------------------------------------------|
+| `title`     | string    | Título del artículo                                   |
+| `content`   | string    | Contenido del artículo                                |
+| `author`    | string    | Autor del artículo                                    |
+| `createdAt` | date      | Fecha de creación del artículo                        |
+| `updatedAt` | date      | Fecha de última actualización del artículo            |
