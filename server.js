@@ -92,6 +92,16 @@ app.put('/api/products/:id', async (req, res) => {
   }
 });
 
+// Configurar el frontend (React)
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// Catch-all para manejar rutas no definidas en APIs y servir index.html
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+
 // Inicia el servidor y conecta a la base de datos
 app.listen(port, host, () => {
   connectToDatabase();
