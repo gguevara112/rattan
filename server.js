@@ -2,21 +2,25 @@ import express from 'express';
 import { MongoClient, ObjectId } from 'mongodb';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-dotenv.config(); // Cargar configuración del archivo .env
+// Configuración de __dirname en módulos ES6
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config();
 
 const app = express();
 
-// Obtener host y puerto de las variables de entorno o usar valores predeterminados
 const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || 5002;
 
-// URL de conexión a MongoDB (asegúrate de reemplazar `<db_password>` con la contraseña correcta)
 const uri = "mongodb+srv://admin:AmjuBfihm8vtX8tq@test.gmqrn.mongodb.net/?retryWrites=true&w=majority&appName=test";
 const client = new MongoClient(uri);
 
 app.use(cors());
-app.use(express.json()); // Middleware para procesar JSON en el cuerpo de la solicitud
+app.use(express.json());
 
 // Conexión a la base de datos
 async function connectToDatabase() {
@@ -92,15 +96,12 @@ app.put('/api/products/:id', async (req, res) => {
   }
 });
 
-// Configurar el frontend (React)
-const __dirname = path.resolve();
+// Configuración del frontend (React)
 app.use(express.static(path.join(__dirname, 'dist')));
 
-// Catch-all para manejar rutas no definidas en APIs y servir index.html
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
-
 
 // Inicia el servidor y conecta a la base de datos
 app.listen(port, host, () => {
